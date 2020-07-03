@@ -1,2 +1,2 @@
 # TechSum
- * code at paic
+ * technical summary at PAIC
