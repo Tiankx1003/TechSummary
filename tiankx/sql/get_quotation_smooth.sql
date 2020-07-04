@@ -36,7 +36,7 @@ select  dimission.date_day the_date         -- 交易日期
 from tmp_quotation_info quotation
 cross join calendar dimission
 on quotation.year = dimission.year
-where quotation.valid_date <> quotation.the_date
+where datediff(quotation.valid_date, quotation.the_date) <> 1
     and year(quotation.the_date) = year(quotation.valid_date) -- 同年数据平滑
     and dimission.date_day between quotation.the_date and quotation.valid_date
 union all
@@ -48,7 +48,7 @@ select  dimission.date_day the_date         -- 交易日期
               else '1' end is_smooth        -- 平滑标记，1是
 from tmp_quotation_info quotation
 cross join calendar dimission
-where quotation.valid_date <> quotation.the_date
+where datediff(quotation.valid_date, quotation.the_date) <> 1
     and year(quotation.the_date) <> year(quotation.valid_date) -- 跨年数据
     and dimission.date_day between quotation.the_date and quotation.valid_date
 union all
@@ -58,5 +58,5 @@ select  quotation.the_date the_date         -- 交易日期
         ,quotation.the_date smooth_date     -- 平滑取自的日期
         ,'0' is_smooth                      -- 平滑标记，0否
 from tmp_quotation_info quotation
-where quotation.valid_date = quotation.the_date
+where datediff(quotation.valid_date, quotation.the_date) = 1
 ;

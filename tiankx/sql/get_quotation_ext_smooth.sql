@@ -37,26 +37,26 @@ select  the_date, id
         ,value5[0] value5
 from (
     select  the_date, id
-            ,collect_list(value1 ignore nulls) over (
-                                                    partition by id
-                                                    order by the_date desc
-                                                    ) value1
-            ,collect_list(value2 ignore nulls) over (
-                                                    partition by id
-                                                    order by the_date desc
-                                                    ) value2
-            ,collect_list(value3 ignore nulls) over (
-                                                    partition by id
-                                                    order by the_date desc
-                                                    ) value3
-            ,collect_list(value4 ignore nulls) over (
-                                                    partition by id
-                                                    order by the_date desc
-                                                    ) value4
-            ,collect_list(value5 ignore nulls) over (
-                                                    partition by id
-                                                    order by the_date desc
-                                                    ) value5
+            ,collect_list(value1) over (
+                                        partition by id
+                                        order by the_date desc
+                                        ) value1
+            ,collect_list(value2) over (
+                                        partition by id
+                                        order by the_date desc
+                                        ) value2
+            ,collect_list(value3) over (
+                                        partition by id
+                                        order by the_date desc
+                                        ) value3
+            ,collect_list(value4) over (
+                                        partition by id
+                                        order by the_date desc
+                                        ) value4
+            ,collect_list(value5) over (
+                                        partition by id
+                                        order by the_date desc
+                                        ) value5
     from quotation_ext
     ) quotation_ext_col
 ;
