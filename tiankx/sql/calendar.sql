@@ -1,4 +1,4 @@
-create table if not exists num2 (i int);-- 创建一个表用来储存0-9的数字
+create table if not exists num (i int);-- 创建一个表用来储存0-9的数字
 create table  if not exists calendar(datelist date); -- 生成一个存储日期的表，datalist是字段名
 create table if not exists calendar_detail( --存放2000年以来10000天日期数据
     date_day string comment '日期',
@@ -8,7 +8,7 @@ create table if not exists calendar_detail( --存放2000年以来10000天日期�
 ) comment '日历明细表';
 
 
-insert into num2 (i) values (0), (1), (2), (3), (4), (5), (6), (7), (8), (9);-- 生成0-9的数字，方便以后计算时间
+insert into num (i) values (0), (1), (2), (3), (4), (5), (6), (7), (8), (9);-- 生成0-9的数字，方便以后计算时间
 
 -- 这里是生成并插入日期数据
 insert overwrite table calendar 
